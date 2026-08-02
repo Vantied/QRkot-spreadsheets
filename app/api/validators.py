@@ -73,6 +73,10 @@ async def check_project_before_delete(project: CharityProject) -> None:
 
 
 async def any_closed_projects(projects: list):
+    """
+    Проверяет, есть ли закрытые проекты
+    Если нет, то выкидывает ошибку
+    """
     if not projects:
         raise HTTPException(
             status_code=404,
