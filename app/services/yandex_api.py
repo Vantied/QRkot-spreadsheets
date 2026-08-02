@@ -1,6 +1,6 @@
 import io
 from datetime import datetime, timedelta
-from typing import List, Dict, Any
+
 import xlsxwriter
 
 from app.core.config import settings
