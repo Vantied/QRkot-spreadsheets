@@ -16,7 +16,7 @@ class YandexDiskClient:
         self._client: Optional[httpx.AsyncClient] = None
 
     async def __aenter__(self):
-        self._client = httpx.AsyncClient(timeout=30.0)
+        self._client = httpx.AsyncClient(timeout=settings.http_timeout)
         return self
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):

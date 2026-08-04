@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     jwt_lifetime: int = 3600
     yandex_disk_token: Optional[str] = None
     report_format: str = "%Y/%m/%d %H:%M:%S"
+    http_timeout: float = 30.0
 
     model_config = SettingsConfigDict(env_file='.env')
 

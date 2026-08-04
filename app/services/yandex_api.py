@@ -5,13 +5,20 @@ import xlsxwriter
 
 from app.core.config import settings
 from app.core.yandex_client import YandexDiskClient
+from app.core.constants import (
+    SECONDS_IN_HOUR,
+    SECONDS_IN_MINUTE,
+    EXCEL_COL_WIDTH_DESC,
+    EXCEL_COL_WIDTH_NAME,
+    EXCEL_COL_WIDTH_TIME
+)
 
 
 async def format_time_delta(time: timedelta) -> str:
     """Форматирует объект timedelta в человекочитаемую строку"""
     days = time.days
-    hours = time.seconds // 3600
-    minutes = (time.seconds % 3600) // 60
+    hours = time.seconds // SECONDS_IN_HOUR
+    minutes = (time.seconds % SECONDS_IN_HOUR) // SECONDS_IN_MINUTE
 
     if days > 0:
         return f'{days} дн. {hours} ч.'
@@ -58,9 +65,9 @@ async def create_simple_report(
 
     worksheet.write(row, 0, f'Итого проектов: {len(projects)}', title_format)
 
-    worksheet.set_column(0, 0, 30)
-    worksheet.set_column(1, 1, 20)
-    worksheet.set_column(2, 2, 50)
+    worksheet.set_column(0, 0, EXCEL_COL_WIDTH_NAME)
+    worksheet.set_column(1, 1, EXCEL_COL_WIDTH_TIME)
+    worksheet.set_column(2, 2, EXCEL_COL_WIDTH_DESC)
 
     workbook.close()
 
